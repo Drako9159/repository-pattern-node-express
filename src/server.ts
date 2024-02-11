@@ -4,6 +4,7 @@ import { AddressInfo } from "net";
 
 import { config } from "./config";
 import { healthRouter } from "./health/health-router";
+import { userRouter } from "./users/infrastructure/http/user-router";
 
 export class Server {
   private readonly app: Express;
@@ -13,6 +14,7 @@ export class Server {
     this.app = express();
     this.app.use(express.json());
     this.app.use("/health", healthRouter);
+    this.app.use("/users", userRouter);
   }
 
   async start(): Promise<void> {
